@@ -71,7 +71,7 @@ def lambda_handler(event, context):
         # S3 new file trigger
         if 'Records' in event:
             for record in event['Records']:
-                if record.get('eventSource',None) == 'aws:s3':
+                if record.get('eventSource', None) == 'aws:s3':
                     s3_key = record['s3']['object']['key']
                     key = package_demo(s3_key)
         # User manual download trigger (if färjan has already been cleaned)
