@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en" class="no-js app-loading"><head><meta charset="UTF-8"><title>Jumalauta Perpetual Motion Ocean Machine</title><link rel="stylesheet" href="styles/app.css"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta property="og:type" content="website"><meta property="og:title" content="Jumalauta 18, August 24th - 26th, 2018 at Härkälinna, Hauho"><meta property="og:description" content=""><meta property="og:image" content="http://jumalauta.untergrund.net/jml18v/images/fb.png"><link href="https://fonts.googleapis.com/css?family=Galada|Roboto:300,400,400i,700" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/js-datepicker/dist/datepicker.min.css"></head><body><div class="wrapper"><div class="background"><div class="wrap"><div class="sun-shadow"></div><div class="sun"></div><div class="grass"></div><div class="sea"></div><div class="vikingline-cont"><div class="vikingline-pos"><div class="vikingline"><div class="text">Viking Line</div><div class="mid"></div><div class="top"></div><div class="pipe-bottom"></div><div class="pipe-top"></div><div class="bottom"></div></div></div></div></div></div><div class="content"><section class="page-section"><header class="content-header"><h1>Färjanmaker</h1><p>Get your daily Färjan via Perpetual Motion Ocean Machine!</p></header><form id="form"><input placeholder="select date" name="date" id="picker" class="form-control" type="text" required> <button type="submit" class="cta">Download</button></form></section></div></div><script src="https://unpkg.com/js-datepicker"></script><script src="styles/date_fns.min.js"></script><script>window.addEventListener('load', () => {
+    var html = document.getElementsByTagName('html')[0];
+    html.className = html.className.replace('app-loading', 'app-loaded');
+
+    var urlformat = 'output/jumalauta-farjan-%DATE%.zip';
+    var $form = document.getElementById('form');
+    var $picker = document.getElementById('picker');
+    var now = new Date;
+    var utcNow = new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(), now.getUTCDate(), 0, 0, 0, 0));
+    var pickerOptions = {
+      startDate: utcNow,
+      maxDate: utcNow,
+      minDate: new Date(2018, 8, 12),
+      formatter: function (element, value) {
+        element.value = dateFns.format(value, 'YYYY-MM-DD');
+      }
+    };
+
+    datepicker($picker, pickerOptions);
+
+    $form.onsubmit = function (e) {
+      e.preventDefault();
+      const url = urlformat.replace('%DATE%', $form.date.value);
+      window.open(url);
+    }
+  });</script></body></html>
+
